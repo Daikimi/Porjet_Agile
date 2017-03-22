@@ -13,3 +13,36 @@ tr:nth-child(even){
 textarea{
     resize: none;
 }
+
+#identite {
+	padding-bottom: 170px;
+	width: 250px;
+	height: 220px;
+	color: white;
+	background-color: rgb(131, 166, 151);
+}
+
+#identite > .row{
+	background-color: rgb(131, 166, 151);
+}
+
+#formation {
+	width: 250px;
+	height: 500 px;
+	background-color: rgb(134,210,182);
+}
+#formation > .row{
+	background-color: rgb(134,210,182);
+	height: 480px;
+}
+
+#text{
+	margin-left: 20px;
+	margin-right: 20px;
+	text-align:left;
+	font-size: 16px;
+}
+
+strong{
+	color: rgb(131, 166, 151);
+}
