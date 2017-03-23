@@ -11,6 +11,8 @@
 <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
 
 <script src="all.js"></script>
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -57,7 +59,7 @@
 						<h1>S'enregistrer</h1>
 						<br> <input type="text" name="userdb" id="userdb"
 							placeholder="Nom ?" class="form-control" /><br> <input
-							type="text" name="user" id="aliasdb" placeholder="Surnom ?"
+							type="text" name="user" id="aliasdb" placeholder="Prenom ?"
 							class="form-control" /><br> <input type="text" name="email"
 							id="emaildb" placeholder="Email ?" class="form-control" /><br>
 						<input type="password" name="user" id="passwddb"
@@ -70,18 +72,71 @@
 		</div>
 	</div>
 
+	<div id="erreur" style="display: none">
+		<center>
+			<h1>Erreur d'identification</h1>
+			<button id="retourFormulaire" class="btn btn-danger">OK</button>
+		</center>
+	</div>
+
+	<div id="conecter" style="display: none">
+		<div class="row">
+			<div class="col-md-1">
+				<button id="deco" class="btn btn-danger" style="width:130px">Deconnection</button>
+				<div class="row"><br></div>
+				<button id="profile" class="btn btn-info" style="width:130px">Mon profil</button>
+				<div class="row"><br></div>
+				<button id="coach" class="btn btn-info" style="width:130px">Mon coaching</button>
+				<div class="row"><br></div>
+				<button id="rendez" class="btn btn-info" style="width:130px">Rendez-vous</button>
+				<div class="row"><br></div>
+				<button id="chat" class="btn btn-info" style="width:130px">Chat</button>
+			</div>
+			<div class="col-md-11">
+				<center>
+					<div id="Login"></div>
+					<br>
+					<div id="profil">
+						<img src="img/iconeProfil.png" width="=100px" height="100px">
+						<div id="contenant-profil"></div>
+					</div>
+				</center>
+			</div>
+		</div>
+	</div>
+	
+	
+
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
+
 					$("#post-bdd").click(
 							function() {
 								postUserBdd($('#userdb').val(), $('#aliasdb')
 										.val(), $('#emaildb').val(), $(
 										'#passwddb').val())
 							});
-					$("#conection").click(function() {
-						conection($('#userlogin').val())
+					$("#conection").click(
+							function() {
+								conection($('#userlogin').val(), $(
+										'#passwdlogin').val())
+							});
+					$('#retourFormulaire').click(function() {
+						$('#erreur').hide();
+						$('#panel-conection').show();
+
 					});
+
+					$('#deco').click(function() {
+						document.location.href = "id.html";
+					});
+					
+					$('#profile').click(function() {
+						$('#profil').show();
+						donnePerso($('#userlogin').val());
+					});
+
 				});
 	</script>
 
