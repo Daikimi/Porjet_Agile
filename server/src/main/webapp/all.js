@@ -8,7 +8,25 @@ function getUserGeneric(name, url) {
 	});
 }
 
+function conection(name){
+	console.log("testE");
+	
+	 $.ajax
+     ({
+       type: "GET",
+       url: "v1/user/" + name ,
+       success: function (data) {
+    	   $('#panel-conection').hide();
+    	   alert("OK");
+       },
+       error : function(jqXHR, textStatus, errorThrown) {
+       			alert('error: ' + "authentification incorect");
+       		}
+     });
+}
+
 function getForAll() {
+	console.log("test");
 	getSecure("v1/secure/who");
 }
 
@@ -17,7 +35,9 @@ function getByAnnotation() {
 }
 
  function getSecure(url) {
+	 console.log("secure");
  if($("#userlogin").val() != "") {
+	 verifierUser(data);
      $.ajax
      ({
        type: "GET",
@@ -39,8 +59,16 @@ function getByAnnotation() {
         });
      }
  }
+ 
+ function verifierUser(data){
+	 console.log(data);
+	 if(data.id !== -1){
+		 $('#panel-conection').hide();
+	 }
+ }
 
 function postUserBdd(name, alias, email, pwd) {
+	console.log("postUserBdd " + name)
     postUserGeneric(name, alias, email, pwd, "v1/user/");
 }
 
@@ -78,6 +106,7 @@ function listUsersGeneric(url) {
 }
 
 function afficheUser(data) {
+	console.log("test");
 	console.log(data);
 	$("#reponse").html(data.id + " : <b>" + data.alias + "</b> (" + data.name + ")");
 }
