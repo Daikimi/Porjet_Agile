@@ -17,7 +17,7 @@ Donnez ici la liste des histoires utilisateurs que vous vous engagez à terminer
 
 ## PDCA 
 ### Qu'avons nous testé durant ce sprint ?
-    s'inscrire sur juste avec le login.
+    s'inscrire sur le site juste avec le login.
     
 
 ### Qu'avons nous observé ?
