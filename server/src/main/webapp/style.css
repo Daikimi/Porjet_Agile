@@ -1,4 +1,4 @@
-html .row{
+html .row body{
     background-color: rgb(239,239,239);
 }
 
@@ -8,10 +8,15 @@ tr:nth-child(even){
 
 #contact{
     font-size: 18px;
+    color: rgb(131, 166, 151);
 }
 
 textarea{
     resize: none;
+}
+
+th{
+	color: rgb(131, 166, 151);
 }
 
 #identite {
@@ -45,4 +50,16 @@ textarea{
 
 strong{
 	color: rgb(131, 166, 151);
+}
+
+#titreAcceuil{
+	font-size: 70px;
+}
+
+#textAcceuil{
+	font-size: 20px;
+}
+
+#titre{
+	font-size: 22px;
 }
