@@ -1,14 +1,14 @@
 function dessin(name) {
 	$.ajax({
 		type : "GET",
-		url : "v1/event/" + name,
+		url : "v1/event/",
 		success : function(data) {
-			dessinerGride(data);
+			dessinerGride(data,name);
 		}
 	});
 }
 
-function dessinerGride(data) {
+function dessinerGride(data,name) {
 	var context;
 	var canvas;
 	canvas = $('#screen')[0];
@@ -40,35 +40,44 @@ function dessinerGride(data) {
 			context.strokeRect(i, j, 75, 75);
 		}
 	}
-
+	
+	context.fillText("Mes rendez vous",130,570);
+	context.fillText("Créneaux réservés",460,570);
+	context.fillText("Créneaux disponible",790,570);
+	
+	context.strokeRect(100,555,15,15);
+	context.strokeRect(430,555,15,15);
+	context.strokeRect(760,555,15,15);
+	
+	context.fillStyle=" rgb(131,166,151)";
+	context.fillRect(101,556,13,13);
+	context.fillStyle=" rgb(255,110,110)";
+	context.fillRect(431,556,13,13);
+	
 	context.fill();
 	context.stroke();
 
-	dessinerContenue(data, context);
+	dessinerAll(data,context,name);
 }
 
-function dessinerContenue(data, context) {
+function dessinerAll(data, context,name){
+	var canvas;
+	canvas = $('#screen')[0];
+	context = canvas.getContext("2d");
+	
+	
 	var y=15;
 	
-	console.log(data);
-	
-	context.fillStyle = "red";
-	
 	for(var i=0; i<data.length; i++){
-		if(data[i].date.substring(0,2) === "20"){
-			context.fillRect(data[i].date.substring(10,11)*75+300,y,75,75);
-		}else if(data[i].date.substring(0,2) === "21"){
-			context.fillRect(data[i].date.substring(10,11)*75+300,y+75,75,75);
-		}else if(data[i].date.substring(0,2) === "22"){
-			context.fillRect(data[i].date.substring(10,11)*75+300,y+75*2,75,75);
-		}else if(data[i].date.substring(0,2) === "23"){
-			context.fillRect(data[i].date.substring(10,11)*75+300,y+75*3,75,75);
-		}else if(data[i].date.substring(0,2) === "24"){
-			context.fillRect(data[i].date.substring(10,11)*75+300,y+75*4,75,75);
-		}else if(data[i].date.substring(0,2) === "25"){
-			context.fillRect(data[i].date.substring(10,11)*75+300,y+75*5,75,75);
-		}else if(data[i].date.substring(0,2) === "26"){
-			context.fillRect(data[i].date.substring(10,11)*75+300,y+75*6,75,75);
+		for(var j=0; j<7; j++){
+			if(data[i].date.substring(0,2) === "2"+j){
+				if(name === data[i].nom){
+					context.fillStyle=" rgb(131,166,151)";
+				}else{
+					context.fillStyle=" rgb(255,110,110)";
+				}
+				context.fillRect(data[i].date.substring(10,11)*75+325+1,y+(75*j)+1,73,73);
+			}
 		}
 	}
 

@@ -95,15 +95,15 @@
 			</div>
 			<div class="col-md-11">
 				<center>
-					<div id="Login"></div>
 					<br>
 					<div id="profil">
+						<div id="Login"></div>
 						<img src="img/iconeProfil.png" width="=100px" height="100px">
 						<div id="contenant-profil"></div>
 					</div>
 					<div id="rdv" style="display: none"">
 						<h3>Rendez vous de la semaine</h3>
-						 <canvas height='600' width='1200' id='screen'/>  
+						 <canvas height='800' width='1200' id='screen'/>  
 						 test
 					</div>
 				</center>
@@ -116,7 +116,7 @@
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
-
+					
 					$("#post-bdd").click(
 							function() {
 								postUserBdd($('#userdb').val(), $('#aliasdb')

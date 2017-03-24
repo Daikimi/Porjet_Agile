@@ -39,6 +39,10 @@ public class EvenementResource {
 				d.set(2017, 3, rdm.nextInt(7)+20, rdm.nextInt(9)+1, 0);
 				String date = d.get(Calendar.DAY_OF_MONTH)+"/"+d.get(Calendar.MONTH)+"/"+d.get(Calendar.YEAR)+" "+d.get(Calendar.HOUR);
 				dao.insert(new Evenement("Olivier",date));
+			}
+			for(int i=0; i<5; i++){
+				d.set(2017, 3, rdm.nextInt(7)+20, rdm.nextInt(9)+1, 0);
+				String date = d.get(Calendar.DAY_OF_MONTH)+"/"+d.get(Calendar.MONTH)+"/"+d.get(Calendar.YEAR)+" "+d.get(Calendar.HOUR);
 				dao.insert(new Evenement("Test",date));
 			}
 		}
