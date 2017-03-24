@@ -14,10 +14,18 @@ function conection(name, mdp) {
 		url : "v1/user/" + name,
 		success : function(data) {
 			$('#panel-conection').hide();
-			$('#Login').empty();
-			$('#Login').append("<h1>Bienvenue "+name+"</h1>");
-			donnePerso(name);
 			$('#conecter').show();
+			if (data.name === "Admin") {
+				$('#non-admin').hide();
+				$('#admin').show();
+				$('#rdv').show();
+				$('#profil').hide();
+				dessin(name);
+			} else {
+				$('#Login').empty();
+				$('#Login').append("<h1>Bienvenue " + name + "</h1>");
+				donnePerso(name);
+			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			$('#panel-conection').hide();
@@ -26,13 +34,15 @@ function conection(name, mdp) {
 	});
 }
 
-function donnePerso(name){
+function donnePerso(name) {
 	$.ajax({
 		type : "GET",
 		url : "v1/user/" + name,
-		success : function(data){
+		success : function(data) {
 			$('#contenant-profil').empty();
-			$('#contenant-profil').append("<p><h3>Nom : "+data.name+"<br>Prenom : "+data.alias+"<br>Email : "+data.email+"</h3></p>");
+			$('#contenant-profil').append(
+					"<p><h3>Nom : " + data.name + "<br>Prenom : " + data.alias
+							+ "<br>Email : " + data.email + "</h3></p>");
 		}
 	});
 }
@@ -82,7 +92,7 @@ function postUserBdd(name, alias, email, pwd) {
 	postUserGeneric(name, alias, email, pwd, "v1/user/");
 	$('#panel-conection').hide();
 	$('#Login').empty();
-	$('#Login').append("<h1>Bienvenue "+name+"</h1>");
+	$('#Login').append("<h1>Bienvenue " + name + "</h1>");
 	donnePerso(name);
 	$('#conecter').show();
 }
@@ -103,7 +113,7 @@ function postUserGeneric(name, alias, email, pwd, url) {
 		}),
 		success : function(data, textStatus, jqXHR) {
 			afficheUser(data);
-			
+
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log('postUser error: ' + textStatus);

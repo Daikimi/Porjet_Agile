@@ -14,7 +14,7 @@ function dessinerGride(data,name) {
 	canvas = $('#screen')[0];
 	context = canvas.getContext("2d");
 
-	context.fillStyle = "whitesmoke";
+	context.fillStyle = "white";
 	context.fillRect(0, 0, 1000, 500);
 
 	context.fillStyle = "black";
@@ -53,6 +53,11 @@ function dessinerGride(data,name) {
 	context.fillRect(101,556,13,13);
 	context.fillStyle=" rgb(255,110,110)";
 	context.fillRect(431,556,13,13);
+	
+	if(name === "Admin"){
+		context.fillStyle="white";
+		context.fillRect(99,554,200,50);
+	}
 	
 	context.fill();
 	context.stroke();

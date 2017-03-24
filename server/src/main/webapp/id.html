@@ -44,7 +44,7 @@
 							placeholder="Login" class="form-control" /> <br> <input
 							type="password" name="user" id="passwdlogin"
 							placeholder="Password" class="form-control" /> <br />
-						<button id="conection" class="btn btn-success">Se
+						<button id="conection" class="btn btn-info">Se
 							conecter</button>
 					</div>
 				</div>
@@ -83,15 +83,33 @@
 	<div id="conecter" style="display: none">
 		<div class="row">
 			<div class="col-md-1">
-				<button id="deco" class="btn btn-danger" style="width:130px">Deconnection</button>
-				<div class="row"><br></div>
-				<button id="profile" class="btn btn-info" style="width:130px">Mon profil</button>
-				<div class="row"><br></div>
-				<button id="coach" class="btn btn-info" style="width:130px">Mon coaching</button>
-				<div class="row"><br></div>
-				<button id="rendez" class="btn btn-info" style="width:130px">Rendez-vous</button>
-				<div class="row"><br></div>
-				<button id="chat" class="btn btn-info" style="width:130px">Chat</button>
+				<button id="deco" class="btn btn-danger" style="width: 130px">Deconnection</button>
+				<div class="row">
+					<br>
+				</div>
+				<div id="non-admin">
+					<button id="profile" class="btn btn-info" style="width: 130px">Mon
+						profil</button>
+					<div class="row">
+						<br>
+					</div>
+					<button id="coach" class="btn btn-info" style="width: 130px">Mon
+						coaching</button>
+					<div class="row">
+						<br>
+					</div>
+				</div>
+				<div id="admin" style="display:none">
+					<button id="add" class="btn btn-info" style="width: 130px">Ajouter rdv</button>
+					<div class="row">
+						<br>
+					</div>
+				</div>
+				<button id="rendez" class="btn btn-info" style="width: 130px">Rendez-vous</button>
+				<div class="row">
+					<br>
+				</div>
+				<button id="chat" class="btn btn-info" style="width: 130px">Chat</button>
 			</div>
 			<div class="col-md-11">
 				<center>
@@ -101,22 +119,22 @@
 						<img src="img/iconeProfil.png" width="=100px" height="100px">
 						<div id="contenant-profil"></div>
 					</div>
-					<div id="rdv" style="display: none"">
+					<div id="rdv" style="display: none">
 						<h3>Rendez vous de la semaine</h3>
-						 <canvas height='800' width='1200' id='screen'/>  
-						 test
+						<canvas height='800' width='1200' id='screen' />
+					</div>
+					<div id="addRdv" style="display:none">
+						
 					</div>
 				</center>
 			</div>
 		</div>
 	</div>
-	
-	
 
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
-					
+
 					$("#post-bdd").click(
 							function() {
 								postUserBdd($('#userdb').val(), $('#aliasdb')
@@ -128,12 +146,12 @@
 								conection($('#userlogin').val(), $(
 										'#passwdlogin').val())
 							});
-					$("#rendez").click(
-							function() {
-								$('#profil').hide();
-								$('#rdv').show();
-								dessin($('#userlogin').val());
-							});
+					$("#rendez").click(function() {
+						$('#profil').hide();
+						$('#rdv').show();
+						$('#addRdv').hide();
+						dessin($('#userlogin').val());
+					});
 					$('#retourFormulaire').click(function() {
 						$('#erreur').hide();
 						$('#panel-conection').show();
@@ -143,11 +161,16 @@
 					$('#deco').click(function() {
 						document.location.href = "id.html";
 					});
-					
+
 					$('#profile').click(function() {
 						$('#rdv').hide();
 						$('#profil').show();
 						donnePerso($('#userlogin').val());
+					});
+					
+					$('#add').click(function() {
+						$('#rdv').hide();
+						$('#addRdv').show();
 					});
 
 				});
