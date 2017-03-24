@@ -14,7 +14,7 @@ public interface EvenementDao {
 	@SqlUpdate("insert into evenement (nom,date,dispo) values (:nom, :date, :dispo)")
 	int insert(@BindBean Evenement evenement);
 
-	@SqlQuery("select * from evenement where nom = :nom")
+	@SqlQuery("select * from evenement where nom = :nom order by date")
 	@RegisterMapperFactory(BeanMapperFactory.class)
 	java.util.List<Evenement> findByName(@Bind("nom") String nom);
 

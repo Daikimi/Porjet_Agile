@@ -11,6 +11,7 @@
 <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
 
 <script src="all.js"></script>
+<script src="evenement.js"></script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -100,6 +101,11 @@
 						<img src="img/iconeProfil.png" width="=100px" height="100px">
 						<div id="contenant-profil"></div>
 					</div>
+					<div id="rdv" style="display: none"">
+						<h3>Rendez vous de la semaine</h3>
+						 <canvas height='600' width='1200' id='screen'/>  
+						 test
+					</div>
 				</center>
 			</div>
 		</div>
@@ -122,6 +128,12 @@
 								conection($('#userlogin').val(), $(
 										'#passwdlogin').val())
 							});
+					$("#rendez").click(
+							function() {
+								$('#profil').hide();
+								$('#rdv').show();
+								dessin($('#userlogin').val());
+							});
 					$('#retourFormulaire').click(function() {
 						$('#erreur').hide();
 						$('#panel-conection').show();
@@ -133,6 +145,7 @@
 					});
 					
 					$('#profile').click(function() {
+						$('#rdv').hide();
 						$('#profil').show();
 						donnePerso($('#userlogin').val());
 					});
