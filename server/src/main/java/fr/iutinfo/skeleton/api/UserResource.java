@@ -29,6 +29,8 @@ public class UserResource {
 			logger.debug("Crate table users");
 			dao.createUserTable();
 			dao.insert(new User(0, "Admin", "Admin"));
+			dao.insert(new User(0, "Marc", "t"));
+			dao.insert(new User(0, "Olivier", "a"));
 		}
 	}
 

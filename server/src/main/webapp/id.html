@@ -44,8 +44,7 @@
 							placeholder="Login" class="form-control" /> <br> <input
 							type="password" name="user" id="passwdlogin"
 							placeholder="Password" class="form-control" /> <br />
-						<button id="conection" class="btn btn-info">Se
-							conecter</button>
+						<button id="conection" class="btn btn-info">Se conecter</button>
 					</div>
 				</div>
 				<div class="col-md-4"></div>
@@ -80,7 +79,7 @@
 		</center>
 	</div>
 
-	<div id="conecter" style="display: none">
+	<div id="conecter" style="dispplay: none">
 		<div class="row">
 			<div class="col-md-1">
 				<button id="deco" class="btn btn-danger" style="width: 130px">Deconnection</button>
@@ -99,8 +98,9 @@
 						<br>
 					</div>
 				</div>
-				<div id="admin" style="display:none">
-					<button id="add" class="btn btn-info" style="width: 130px">Ajouter rdv</button>
+				<div id="admin" style="display: none">
+					<button id="add" class="btn btn-info" style="width: 130px">Ajouter
+						rdv</button>
 					<div class="row">
 						<br>
 					</div>
@@ -112,20 +112,31 @@
 				<button id="chat" class="btn btn-info" style="width: 130px">Chat</button>
 			</div>
 			<div class="col-md-11">
-				<center>
-					<br>
-					<div id="profil">
-						<div id="Login"></div>
-						<img src="img/iconeProfil.png" width="=100px" height="100px">
-						<div id="contenant-profil"></div>
+				<center> <br>
+				<div id="profil">
+					<div id="Login"></div>
+					<img src="img/iconeProfil.png" width="=100px" height="100px">
+					<div id="contenant-profil"></div>
+				</div>
+				<div id="rdv" style="display: none">
+					<h3>Rendez vous de la semaine</h3>
+					<canvas height='800' width='1200' id='screen' />
+				</div>
+				<div id="addRdv" style="dispplay: none">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<h1>Ajouter un rendez-vous</h1>
+							<br> <input type="text" name="userRdv" id="userRdv"
+								placeholder="Nom ?" class="form-control" required /><br> <input
+								type="date" name="date" id="date" required> <br> <br>
+							<input type="text" name="heure" id="heure" placeholder="Heure ?"
+								class="form-control" required style="width: 100px" /> <br>
+							<button id="post-Rdv" class="btn btn-warning">Ajouter</button>
+						</div>
+						<div class="col-md-4"></div>
 					</div>
-					<div id="rdv" style="display: none">
-						<h3>Rendez vous de la semaine</h3>
-						<canvas height='800' width='1200' id='screen' />
-					</div>
-					<div id="addRdv" style="display:none">
-						
-					</div>
+				</div>
 				</center>
 			</div>
 		</div>
@@ -134,6 +145,10 @@
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
+
+					$("#post-Rdv").click(function() {
+						postRdvBdd($('#userRdv').val(), $('#date').val(), $('#heure').val());
+					});
 
 					$("#post-bdd").click(
 							function() {
@@ -167,7 +182,7 @@
 						$('#profil').show();
 						donnePerso($('#userlogin').val());
 					});
-					
+
 					$('#add').click(function() {
 						$('#rdv').hide();
 						$('#addRdv').show();

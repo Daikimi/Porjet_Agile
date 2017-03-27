@@ -82,9 +82,44 @@ function dessinerAll(data, context,name){
 					context.fillStyle=" rgb(255,110,110)";
 				}
 				context.fillRect(data[i].date.substring(10,11)*75+325+1,y+(75*j)+1,73,73);
+				if(name == "Admin"){
+					context.fillStyle = "black";
+					context.fillText(data[i].nom,data[i].date.substring(10,11)*75+325+4,y+(75*j)+20);
+				}
 			}
 		}
 	}
 
 	context.fill();
 }
+
+function postRdvBdd(nom, date, heure){
+	
+	var d  = convertDate(date,heure);
+	console.log(d);
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : '/v1/event',
+		dataType : "json",
+		data : JSON.stringify({
+			"nom" : nom,
+			"date" : d,
+		}),
+		success : function(data, textStatus, jqXHR) {
+			console.log("add");
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log("non add");
+		}
+	});
+}
+
+function convertDate(date,heure){
+	var tab = (date+"-"+heure).split("-");
+	return tab[2]+"/"+tab[1].substring(1,2)+"/"+tab[0]+" "+tab[3];
+}
+
+
+
+

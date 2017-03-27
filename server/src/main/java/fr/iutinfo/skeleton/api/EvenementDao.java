@@ -17,6 +17,10 @@ public interface EvenementDao {
 	@SqlQuery("select * from evenement where nom = :nom order by date")
 	@RegisterMapperFactory(BeanMapperFactory.class)
 	java.util.List<Evenement> findByName(@Bind("nom") String nom);
+	
+	@SqlQuery("select * from evenement where date = :date order by date")
+	@RegisterMapperFactory(BeanMapperFactory.class)
+	Evenement findByDate(@Bind("date") String date);
 
 	@SqlQuery("select * from evenement order by nom")
 	@RegisterMapperFactory(BeanMapperFactory.class)
