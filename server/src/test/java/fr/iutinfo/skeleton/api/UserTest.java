@@ -1,4 +1,4 @@
-package fr.iutinfo.skeleton.api;
+/*package fr.iutinfo.skeleton.api;
 
 import org.junit.Test;
 
@@ -14,3 +14,4 @@ public class UserTest {
         assertFalse(user.getSalt().isEmpty());
     }
 }
+*/

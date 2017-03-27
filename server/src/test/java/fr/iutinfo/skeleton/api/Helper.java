@@ -1,4 +1,4 @@
-package fr.iutinfo.skeleton.api;
+/*package fr.iutinfo.skeleton.api;
 
 import fr.iutinfo.skeleton.common.dto.UserDto;
 import org.slf4j.Logger;
@@ -74,4 +74,4 @@ public class Helper {
     static User createIan() {
         return createFullUSer("Ian Murdock", "debian", "ian@debian.org", "mot de passe");
     }
-}
+}*/

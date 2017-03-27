@@ -1,4 +1,4 @@
-package fr.iutinfo.skeleton.api;
+/*package fr.iutinfo.skeleton.api;
 
 import fr.iutinfo.skeleton.common.dto.UserDto;
 import org.glassfish.jersey.test.JerseyTest;
@@ -139,3 +139,4 @@ public class UserResourceTest extends JerseyTest {
         assertEquals(2, users.size());
     }
 }
+*/

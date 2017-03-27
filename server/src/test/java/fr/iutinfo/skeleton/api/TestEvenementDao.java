@@ -1,4 +1,4 @@
-package fr.iutinfo.skeleton.api;
+/*package fr.iutinfo.skeleton.api;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -31,3 +31,4 @@ public class TestEvenementDao {
 		Assert.assertEquals(null, e);
 	}
 }
+*/

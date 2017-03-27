@@ -70,10 +70,25 @@ function dessinerGride(data, name) {
 }
 
 function mouseClicked(event) {
-    var ligCoord = event.pageY;
-    var colCoord = event.pageX;
+	  /*
+		 * console.log("i:" + Math.ceil((event.clientX -100 -
+		 * canvas.getBoundingClientRect().left ) / 75) ); console.log("j:" +
+		 * Math.ceil((event.clientY - 15-canvas.getBoundingClientRect().top) /
+		 * 75) );
+		 */
+	 
+	 
+    var ligCoord = event.clientX;
+    var colCoord = event.clientY;
+    coord = convertCoord(ligCoord,colCoord);
+    console.log(coord);
     
-    console.log(ligCoord+","+colCoord);
+}
+
+function convertCoord(lig,col){
+	var c = Math.ceil((lig -100 - canvas.getBoundingClientRect().left ) / 75);
+	var l = Math.ceil((col  - 15-canvas.getBoundingClientRect().top) / 75);
+	return [c,l];
 }
 
 function dessinerAll(data, context, name) {
@@ -102,7 +117,23 @@ function dessinerAll(data, context, name) {
 			}
 		}
 	}
-
+	
+	context.fillStyle = " rgb(255,110,110)";
+	for(var i=0; i<2;i++){
+		for(var j=0; j<7; j++){
+			context.fillRect(i * 75 + 101,
+					y + (75 * j) + 1, 73, 73);
+		}
+	}
+	
+	context.fillStyle = "grey";
+	for(var i=0; i<2;i++){
+		for(var j=0; j<7; j++){
+			context.fillRect(i * 75 + 101 + 2*75,
+					y + (75 * j) + 1, 73, 73);
+		}
+	}
+	
 	context.fill();
 }
 
