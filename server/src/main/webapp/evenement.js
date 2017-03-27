@@ -1,10 +1,12 @@
 var canvas;
+var nomLog;
 
 function dessin(name) {
 	$.ajax({
 		type : "GET",
 		url : "v1/event/",
 		success : function(data) {
+			nomLog=name;
 			dessinerGride(data, name);
 		}
 	});
@@ -70,19 +72,10 @@ function dessinerGride(data, name) {
 }
 
 function mouseClicked(event) {
-	  /*
-		 * console.log("i:" + Math.ceil((event.clientX -100 -
-		 * canvas.getBoundingClientRect().left ) / 75) ); console.log("j:" +
-		 * Math.ceil((event.clientY - 15-canvas.getBoundingClientRect().top) /
-		 * 75) );
-		 */
-	 
-	 
     var ligCoord = event.clientX;
     var colCoord = event.clientY;
     coord = convertCoord(ligCoord,colCoord);
-    console.log(coord);
-    
+    ajouterRdv(coord);
 }
 
 function convertCoord(lig,col){
@@ -151,6 +144,7 @@ function postRdvBdd(nom, date, heure) {
 			"date" : d,
 		}),
 		success : function(data, textStatus, jqXHR) {
+			dessin(nomLog);
 			alert("Rendez-vous ajouté");
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -168,6 +162,16 @@ function delRdvBdd(date, heure) {
 			alert("Rendez-vous supprimé");
 		}
 	});
+}
+
+function ajouterRdv(coord){
+	if(coord[0]<5){
+		alert("Ce rendez vous existe deja");
+		return;
+	}
+	var heure = coord[0]-4;
+	var jour = coord[1]+19;
+	postRdvBdd(nomLog, "2017-03-"+jour, heure);
 }
 
 function convertDate(date, heure) {
