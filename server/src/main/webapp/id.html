@@ -79,7 +79,7 @@
 		</center>
 	</div>
 
-	<div id="conecter" style="dispplay: none">
+	<div id="conecter" style="display: none">
 		<div class="row">
 			<div class="col-md-1">
 				<button id="deco" class="btn btn-danger" style="width: 130px">Deconnection</button>
@@ -104,6 +104,15 @@
 					<div class="row">
 						<br>
 					</div>
+					<button id="rm" class="btn btn-info" style="width: 130px">Supprimer
+						rdv</button>
+					<div class="row">
+						<br>
+					</div>
+					<button id="liste" class="btn btn-info" style="width: 130px">Utilisateurs</button>
+					<div class="row">
+						<br>
+					</div>
 				</div>
 				<button id="rendez" class="btn btn-info" style="width: 130px">Rendez-vous</button>
 				<div class="row">
@@ -112,31 +121,51 @@
 				<button id="chat" class="btn btn-info" style="width: 130px">Chat</button>
 			</div>
 			<div class="col-md-11">
-				<center> <br>
-				<div id="profil">
-					<div id="Login"></div>
-					<img src="img/iconeProfil.png" width="=100px" height="100px">
-					<div id="contenant-profil"></div>
-				</div>
-				<div id="rdv" style="display: none">
-					<h3>Rendez vous de la semaine</h3>
-					<canvas height='800' width='1200' id='screen' />
-				</div>
-				<div id="addRdv" style="dispplay: none">
-					<div class="col-md-4"></div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<h1>Ajouter un rendez-vous</h1>
-							<br> <input type="text" name="userRdv" id="userRdv"
-								placeholder="Nom ?" class="form-control" required /><br> <input
-								type="date" name="date" id="date" required> <br> <br>
-							<input type="text" name="heure" id="heure" placeholder="Heure ?"
-								class="form-control" required style="width: 100px" /> <br>
-							<button id="post-Rdv" class="btn btn-warning">Ajouter</button>
-						</div>
-						<div class="col-md-4"></div>
+				<center>
+					<br>
+					<div id="profil">
+						<div id="Login"></div>
+						<img src="img/iconeProfil.png" width="=100px" height="100px">
+						<div id="contenant-profil"></div>
 					</div>
-				</div>
+					<div id="rdv" style="display: none">
+						<h3>Rendez vous de la semaine</h3>
+						<canvas height='800' width='1200' id='screen' />
+					</div>
+					<div id="addRdv" style="display: none">
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<h1>Ajouter un rendez-vous</h1>
+								<br> <input type="text" name="userRdv" id="userRdv"
+									placeholder="Nom ?" class="form-control" required /><br>
+								<input type="date" name="date" id="date" required> <br>
+								<br> <input type="text" name="heure" id="heure"
+									placeholder="Heure ?" class="form-control" required
+									style="width: 100px" /> <br>
+								<button id="post-Rdv" class="btn btn-warning">Ajouter</button>
+							</div>
+							<div class="col-md-4"></div>
+						</div>
+					</div>
+					<div id="rmRdv" style="display: none">
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<h1>Supprimer un rendez-vous</h1>
+								<input type="date" name="dated" id="dated" required> <br>
+								<br> <input type="text" name="heured" id="heured"
+									placeholder="Heure ?" class="form-control" required
+									style="width: 100px" /> <br>
+								<button id="del-Rdv" class="btn btn-warning">Supprimer</button>
+							</div>
+							<div class="col-md-4"></div>
+						</div>
+					</div>
+					<div id="list" style="display:none">
+								<h1>Liste des clients</h1>
+								<div id="content-list"></div>
+					</div>
 				</center>
 			</div>
 		</div>
@@ -146,8 +175,14 @@
 		$(document).ready(
 				function() {
 
-					$("#post-Rdv").click(function() {
-						postRdvBdd($('#userRdv').val(), $('#date').val(), $('#heure').val());
+					$("#post-Rdv").click(
+							function() {
+								postRdvBdd($('#userRdv').val(), $('#date')
+										.val(), $('#heure').val());
+							});
+
+					$("#del-Rdv").click(function() {
+						delRdvBdd($('#dated').val(), $('#heured').val())
 					});
 
 					$("#post-bdd").click(
@@ -163,6 +198,7 @@
 							});
 					$("#rendez").click(function() {
 						$('#profil').hide();
+						$('#list').hide();
 						$('#rdv').show();
 						$('#addRdv').hide();
 						dessin($('#userlogin').val());
@@ -185,7 +221,24 @@
 
 					$('#add').click(function() {
 						$('#rdv').hide();
+						$('#list').hide();
 						$('#addRdv').show();
+						$('#rmRdv').hide();
+					});
+
+					$('#rm').click(function() {
+						$('#rdv').hide();
+						$('#list').hide();
+						$('#addRdv').hide();
+						$('#rmRdv').show();
+					});
+
+					$('#liste').click(function() {
+						$('#rdv').hide();
+						$('#list').show();
+						$('#addRdv').hide();
+						$('#rmRdv').hide();
+						afficherUser();
 					});
 
 				});

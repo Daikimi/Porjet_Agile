@@ -29,8 +29,8 @@ public interface EvenementDao {
 	@SqlUpdate("drop table if exists evenement")
 	void droptTableEvenement();
 
-	@SqlUpdate("delete from evenement where nom = :nom")
-	void delete(@Bind("nom") String nom);
+	@SqlUpdate("delete from evenement where date = :date")
+	void delete(@Bind("date") String date);
 	
 	void close();
 }
