@@ -1,3 +1,5 @@
+var canvas;
+
 function dessin(name) {
 	$.ajax({
 		type : "GET",
@@ -10,7 +12,6 @@ function dessin(name) {
 
 function dessinerGride(data, name) {
 	var context;
-	var canvas;
 	canvas = $('#screen')[0];
 	context = canvas.getContext("2d");
 
@@ -58,12 +59,21 @@ function dessinerGride(data, name) {
 	if (name === "Admin") {
 		context.fillStyle = "white";
 		context.fillRect(99, 554, 200, 50);
+	}else{
+		canvas.addEventListener("mousedown", mouseClicked, false);
 	}
 
 	context.fill();
 	context.stroke();
 
 	dessinerAll(data, context, name);
+}
+
+function mouseClicked(event) {
+    var ligCoord = event.pageY;
+    var colCoord = event.pageX;
+    
+    console.log(ligCoord+","+colCoord);
 }
 
 function dessinerAll(data, context, name) {
