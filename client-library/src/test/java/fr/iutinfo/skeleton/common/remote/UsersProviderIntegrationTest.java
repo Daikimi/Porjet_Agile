@@ -1,4 +1,4 @@
-package fr.iutinfo.skeleton.common.remote;
+/*package fr.iutinfo.skeleton.common.remote;
 
 import fr.iutinfo.skeleton.api.Api;
 import fr.iutinfo.skeleton.api.BDDFactory;
@@ -67,3 +67,4 @@ public class UsersProviderIntegrationTest extends JerseyTest {
         userDao.createUserTable();
     }
 }
+*/
