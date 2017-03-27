@@ -162,6 +162,12 @@
 							<div class="col-md-4"></div>
 						</div>
 					</div>
+					
+					<div id="coaching" style="display: none">
+					<h1>Ma fiche sportive</h1>
+						<iframe src="img/coaching.pdf#page=1&zoom=100" width="850", height="700" align="middle"></iframe>
+					</div>
+					
 					<div id="list" style="display:none">
 								<h1>Liste des clients</h1>
 								<div id="content-list"></div>
@@ -201,6 +207,8 @@
 						$('#list').hide();
 						$('#rdv').show();
 						$('#addRdv').hide();
+						$('#coaching').hide();
+
 						dessin($('#userlogin').val());
 					});
 					$('#retourFormulaire').click(function() {
@@ -224,6 +232,7 @@
 						$('#list').hide();
 						$('#addRdv').show();
 						$('#rmRdv').hide();
+						$('#coaching').hide();
 					});
 
 					$('#rm').click(function() {
@@ -231,6 +240,7 @@
 						$('#list').hide();
 						$('#addRdv').hide();
 						$('#rmRdv').show();
+						$('#coaching').hide();
 					});
 
 					$('#liste').click(function() {
@@ -238,7 +248,18 @@
 						$('#list').show();
 						$('#addRdv').hide();
 						$('#rmRdv').hide();
+						$('#coaching').hide();
 						afficherUser();
+					});
+					
+					$('#coach').click(function() {
+						$('#profil').hide();
+						$('#rdv').hide();
+						$('#list').hide();
+						$('#addRdv').hide();
+						$('#rmRdv').hide();
+						$('#coaching').show();
+
 					});
 
 				});
