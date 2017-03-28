@@ -37,12 +37,12 @@ public class EvenementResource {
 			Random rdm = new Random();
 			for(int i=0; i<5; i++){
 				d.set(2017, 3, rdm.nextInt(7)+20, rdm.nextInt(9)+1, 0);
-				String date = d.get(Calendar.DAY_OF_MONTH)+"-"+d.get(Calendar.MONTH)+"-"+d.get(Calendar.YEAR)+" "+d.get(Calendar.HOUR);
+				String date = d.get(Calendar.DAY_OF_MONTH)+"-"+d.get(Calendar.MONTH)+"-"+d.get(Calendar.YEAR)+"-"+d.get(Calendar.HOUR);
 				dao.insert(new Evenement("Olivier",date));
 			}
 			for(int i=0; i<5; i++){
 				d.set(2017, 3, rdm.nextInt(7)+20, rdm.nextInt(9)+1, 0);
-				String date = d.get(Calendar.DAY_OF_MONTH)+"-"+d.get(Calendar.MONTH)+"-"+d.get(Calendar.YEAR)+" "+d.get(Calendar.HOUR);
+				String date = d.get(Calendar.DAY_OF_MONTH)+"-"+d.get(Calendar.MONTH)+"-"+d.get(Calendar.YEAR)+"-"+d.get(Calendar.HOUR);
 				dao.insert(new Evenement("Marc",date));
 			}
 		}
@@ -83,4 +83,16 @@ public class EvenementResource {
 	public void deleteEvenement(@PathParam("date") String date){
 		dao.delete(date);
 	}
+	
+	@GET
+	@Path("/date/{jour}")
+	public EvenementDto getByDate(@PathParam("jour") String date){
+		Evenement e;
+		e=dao.findByDate(date);
+		if(e == null){
+			throw new WebApplicationException(404);
+		}
+		return e.convertToDto();
+	}
+	
 }

@@ -18,7 +18,7 @@ function dessinerGride(data, name) {
 	context = canvas.getContext("2d");
 
 	context.fillStyle = "white";
-	context.fillRect(0, 0, 1000, 500);
+	context.fillRect(0, 0, 1200, 800);
 
 	context.fillStyle = "black";
 	context.font = "10px Calibri,Geneva,Arial"
@@ -133,7 +133,6 @@ function dessinerAll(data, context, name) {
 function postRdvBdd(nom, date, heure) {
 
 	var d = convertDate(date, heure);
-	console.log(d);
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
@@ -148,8 +147,25 @@ function postRdvBdd(nom, date, heure) {
 			alert("Rendez-vous ajouté");
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert("Ce rendez vous existe deja");
-		}
+			$.ajax({
+				type : "GET",
+				url : "v1/event/date/"+d,
+				success : function(data) {
+					if(data.nom === nomLog){
+						$.ajax({
+							type : "DELETE",
+							url : "v1/event/" + d,
+							success : function(data) {
+								dessin(nomLog);
+								alert("Rendez-vous supprimé");
+							}
+						});
+					}else{
+						alert("Ce rendez-vous existe deja");
+					}
+				},
+			});
+		}	
 	});
 }
 
@@ -176,7 +192,7 @@ function ajouterRdv(coord){
 
 function convertDate(date, heure) {
 	var tab = (date + "-" + heure).split("-");
-	return tab[2] + "-" + tab[1].substring(1, 2) + "-" + tab[0] + " " + tab[3];
+	return tab[2] + "-" + tab[1].substring(1, 2) + "-" + tab[0] + "-" + tab[3];
 }
 
 function afficherUser() {
